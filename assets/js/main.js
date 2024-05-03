@@ -1,31 +1,12 @@
-import { desafios } from "./desafios.js";
-import { projetos } from "./projetos.js";
-
+// Seleciona elementos
 const navigation = document.querySelector("#navigation");
-const backToTopButton = document.querySelector("#backToTopButton");
-const toggle = document.querySelector("#sw-checkbox");
-const projectsSection = document.querySelector("#projects .wrapper");
-
 const notebook_1 = document.querySelector("#notebook-1");
-const notebook_2 = document.querySelector("#notebook-2");
-const notebook_2_white = document.querySelector("#notebook-2-white");
-const vidro = document.querySelector("#vidro");
 
-window.addEventListener("load", function begin() {
-  projetos(projectsSection);
-  const desafioBtn = document.querySelector("#desafio");
-
-  desafioBtn.addEventListener("click", () => {
-    desafios(projectsSection);
-    document
-      .querySelector("#backToProjectsBtn")
-      .addEventListener("click", begin);
-  });
-});
-
+// Rolagem da janela
 window.addEventListener("scroll", onScroll);
 onScroll();
 
+// Define um tempo limite após o carregamento da janela
 window.onload = setTimeout(() => {
   notebook_1.style.opacity = 0;
 
@@ -35,38 +16,17 @@ window.onload = setTimeout(() => {
   vidro.style.animation = "none";
 }, 4000);
 
+// Função chamada quando a janela é rolada
 function onScroll() {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
 
   activateMenuAtCurrentSection(about);
-  activateMenuAtCurrentSection(projects);
-  activateMenuAtCurrentSection(knowledge);
+  activateMenuAtCurrentSection(favorite);
   activateMenuAtCurrentSection(contact);
 }
 
-function activateMenuAtCurrentSection(section) {
-  const targetLine = scrollY + innerHeight / 2;
-  const sectionTop = section.offsetTop;
-  const sectionHeight = section.offsetHeight;
-
-  const sectionTopReachOrPassedTargetLine = targetLine >= sectionTop;
-  const sectionEndsAt = sectionTop + sectionHeight;
-  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine;
-
-  const sectionBoundaries =
-    sectionTopReachOrPassedTargetLine && !sectionEndPassedTargetLine;
-
-  const sectionId = section.getAttribute("id");
-  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`);
-
-  menuElement.classList.remove("active");
-
-  if (sectionBoundaries) {
-    menuElement.classList.add("active");
-  }
-}
-
+// Mostra a navegação quando a página é rolada
 function showNavOnScroll() {
   if (scrollY > 0) {
     navigation.classList.add("scroll");
@@ -75,34 +35,7 @@ function showNavOnScroll() {
   }
 }
 
-function showBackToTopButtonOnScroll() {
-  if (scrollY > 550) {
-    backToTopButton.classList.add("show");
-  } else {
-    backToTopButton.classList.remove("show");
-  }
-}
-
-openMenu();
-function openMenu() {
-  const openBtns = document.querySelectorAll(".open");
-  openBtns.forEach((e) => {
-    e.addEventListener("click", () => {
-      document.body.classList.add("menu-expanded");
-    });
-  });
-}
-
-closeMenu();
-function closeMenu() {
-  const closeBtns = document.querySelectorAll(".close");
-  closeBtns.forEach((e) => {
-    e.addEventListener("click", () => {
-      document.body.classList.remove("menu-expanded");
-    });
-  });
-}
-
+// Revela elementos com animação na página usando a biblioteca ScrollReveal
 ScrollReveal({
   origin: "bottom",
   distance: "50px",
@@ -123,7 +56,3 @@ ScrollReveal({
   #contact,
   #contact header`
 );
-
-toggle.addEventListener("change", () => {
-  document.body.classList.toggle("light-mode");
-});
