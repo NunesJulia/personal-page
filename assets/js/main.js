@@ -11,8 +11,6 @@ window.onload = setTimeout(() => {
   notebook_1.style.opacity = 0;
 
   notebook_1.style.animation = "none";
-  notebook_2.style.animation = "none";
-  notebook_2_white.style.animation = "none";
   vidro.style.animation = "none";
 }, 4000);
 
