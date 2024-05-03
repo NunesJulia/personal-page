@@ -370,14 +370,6 @@ nav .close-menu {
   filter: contrast(1.2);
 }
 
-#home img#notebook-2-white,
-body.light-mode #home img#notebook-1,
-body.light-mode #home img#notebook-2 {
-  visibility: hidden;
-  opacity: 0;
-  animation: none;
-}
-
 #home img#notebook-1 {
   animation: appear 1s 1s backwards;
 }

@@ -19,7 +19,6 @@ window.onload = setTimeout(() => {
 // Função chamada quando a janela é rolada
 function onScroll() {
   showNavOnScroll();
-  showBackToTopButtonOnScroll();
 
   activateMenuAtCurrentSection(about);
   activateMenuAtCurrentSection(favorite);
